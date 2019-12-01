@@ -167,8 +167,19 @@ export default {
       let width = el.getBoundingClientRect().width
       this.currentIndex -= 1
       new To(el, 'translateX', -this.currentIndex * width, 200, this.ease)
+    },
+    changeSize(){ // portrait-landscape Screen change item-wrapper
+      let el = document.querySelector('.item-wrapper')
+      let width = el.getBoundingClientRect().width      
+      new To(el, 'translateX', -this.currentIndex * width, 200, this.ease)
     }
-  }
+
+  },
+  mounted() {
+    // portrait-landscape Screen change item-wrapper
+      window.addEventListener('resize', this.changeSize, false)
+  }  
+
 }
 </script>
 

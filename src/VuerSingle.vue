@@ -33,6 +33,9 @@ export default {
     }
   },
   mounted() {
+    //portrait  Landscape Screen
+    window.addEventListener('resize', this.getWindowScreen, false)
+
     if (!this.src) return false
     this.$emit('disableSwipe')
     if (this.$root.preload) {
@@ -187,7 +190,16 @@ export default {
     },
     ease(x) {
       return Math.sqrt(1 - Math.pow(x - 1, 2))
-    },
+    },       
+    getWindowScreen (event) { //portrait-landscape Screen
+      let w = this.imgWidth
+      let h = this.imgHeight
+      let imgEl = this.$el.lastChild.firstChild
+      imgEl.style.left = (window.innerWidth - w) / 2 + 'px'
+      imgEl.style.top = (window.innerHeight - h) / 2 + 'px'
+      this.initialScale = window.innerWidth / w
+      imgEl.scaleX = imgEl.scaleY = this.initialScale
+    }    
   },
 }
 </script>
