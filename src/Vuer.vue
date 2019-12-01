@@ -121,6 +121,7 @@ export default {
     closeGallery() {
       this.isShow = false
       this.$refs.img[this.currentIndex].reset()
+      document.exitFullscreen()
     },
     handlePressMove(e, el) {
       e.preventDefault()
