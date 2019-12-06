@@ -118,10 +118,11 @@ export default {
       }
       this.closeGallery()
     },
+    // Cerramos Galería
     closeGallery() {
       this.isShow = false
       this.$refs.img[this.currentIndex].reset()
-      document.exitFullscreen()
+      // document.exitFullscreen()
     },
     handlePressMove(e, el) {
       e.preventDefault()
@@ -172,7 +173,10 @@ export default {
     changeSize(){ // portrait-landscape Screen change item-wrapper
       let el = document.querySelector('.item-wrapper')
       let width = el.getBoundingClientRect().width      
+      let height = el.getBoundingClientRect().height
+
       new To(el, 'translateX', -this.currentIndex * width, 200, this.ease)
+
     }
 
   },

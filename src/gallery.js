@@ -49,6 +49,10 @@ const gallery = {
         // 0.16.0
         vm.$watch('currentIndex', cb)
       },
+      getElement(cb) {
+        // 0.16.0
+        vm.$watch('isShow', cb)
+      },      
       onToggle(cb) {
         // 0.16.0
         vm.$watch('isShow', cb)

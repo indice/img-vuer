@@ -64,7 +64,7 @@ export default {
         imgEl.style.top = (window.innerHeight - h) / 2 + 'px'
         imgEl.parentNode.style.display = 'block'
         if (w < window.innerWidth && h < window.innerHeight) {
-          vm.isSmall = true
+          vm.isSmall = onToggle
         } else if (window.innerWidth / window.innerHeight < w / h) {
           vm.initialScale = window.innerWidth / w
           imgEl.scaleX = imgEl.scaleY = vm.initialScale
@@ -192,13 +192,27 @@ export default {
       return Math.sqrt(1 - Math.pow(x - 1, 2))
     },       
     getWindowScreen (event) { //portrait-landscape Screen
+
+      // img portrait or image landscape
       let w = this.imgWidth
       let h = this.imgHeight
-      let imgEl = this.$el.lastChild.firstChild
-      imgEl.style.left = (window.innerWidth - w) / 2 + 'px'
-      imgEl.style.top = (window.innerHeight - h) / 2 + 'px'
-      this.initialScale = window.innerWidth / w
-      imgEl.scaleX = imgEl.scaleY = this.initialScale
+
+      if (w >= h) {
+        let imgEl = this.$el.lastChild.firstChild
+        imgEl.style.left = (window.innerWidth - w) / 2 + 'px'
+        imgEl.style.top = (window.innerHeight - h) / 2 + 'px'
+        this.initialScale = window.innerWidth / w
+        imgEl.scaleX = imgEl.scaleY = this.initialScale
+      }else{
+        let imgEl = this.$el.lastChild.firstChild
+        imgEl.style.left = (window.innerWidth - w) / 2 + 'px'
+        imgEl.style.top = (window.innerHeight - h) / 2 + 'px'
+        this.initialScale = window.innerHeight / h
+        imgEl.scaleX = imgEl.scaleY = this.initialScale
+      }
+      // FullScreen
+      // console.log(navigator.userAgent)
+      // document.body.requestFullscreen()      
     }    
   },
 }
