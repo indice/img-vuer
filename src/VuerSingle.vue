@@ -217,9 +217,9 @@ export default {
         }
 
       }else{
-        let imgEl = this.$el.lastChild.firstChild
-        imgEl.style.left = (window.innerWidth - w) / 2 + 'px'
-        imgEl.style.top = (window.innerHeight - h) / 2 + 'px'
+        let _imgEl = this.$el.lastChild.firstChild
+        _imgEl.style.left = (window.innerWidth - w) / 2 + 'px'
+        _imgEl.style.top = (window.innerHeight - h) / 2 + 'px'
         //this.initialScale = window.innerHeight / h;
         //_imgEl.scaleX = _imgEl.scaleY = this.initialScale;
         
