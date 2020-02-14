@@ -34,7 +34,9 @@ export default {
   },
   mounted() {
     //portrait  Landscape Screen
-    window.addEventListener('resize', this.getWindowScreen, false)
+    this.$nextTick(function() {
+      window.addEventListener('resize', this.getWindowScreen);
+    })
 
     if (!this.src) return false
     this.$emit('disableSwipe')
@@ -201,14 +203,35 @@ export default {
         let imgEl = this.$el.lastChild.firstChild
         imgEl.style.left = (window.innerWidth - w) / 2 + 'px'
         imgEl.style.top = (window.innerHeight - h) / 2 + 'px'
-        this.initialScale = window.innerWidth / w
-        imgEl.scaleX = imgEl.scaleY = this.initialScale
+        //this.initialScale = window.innerWidth / w;
+        //imgEl.scaleX = imgEl.scaleY = this.initialScale;
+
+       if (w < window.innerWidth && h < window.innerHeight) {
+          this.isSmall = onToggle;
+        } else if (window.innerWidth / window.innerHeight < w / h) {
+          this.initialScale = window.innerWidth / w;
+          imgEl.scaleX = imgEl.scaleY = this.initialScale;
+        } else {
+          this.initialScale = window.innerHeight / h;
+          imgEl.scaleX = imgEl.scaleY = this.initialScale;
+        }
+
       }else{
         let imgEl = this.$el.lastChild.firstChild
         imgEl.style.left = (window.innerWidth - w) / 2 + 'px'
         imgEl.style.top = (window.innerHeight - h) / 2 + 'px'
-        this.initialScale = window.innerHeight / h
-        imgEl.scaleX = imgEl.scaleY = this.initialScale
+        //this.initialScale = window.innerHeight / h;
+        //_imgEl.scaleX = _imgEl.scaleY = this.initialScale;
+        
+        if (w < window.innerWidth && h < window.innerHeight) {
+          this.isSmall = onToggle;
+        } else if (window.innerWidth / window.innerHeight < w / h) {
+          this.initialScale = window.innerWidth / w;
+          _imgEl.scaleX = _imgEl.scaleY = this.initialScale;
+        } else {
+          this.initialScale = window.innerHeight / h;
+          _imgEl.scaleX = _imgEl.scaleY = this.initialScale;
+        }
       }
       // FullScreen
       // console.log(navigator.userAgent)

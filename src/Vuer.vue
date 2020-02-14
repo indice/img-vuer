@@ -174,7 +174,6 @@ export default {
       let el = document.querySelector('.item-wrapper')
       let width = el.getBoundingClientRect().width      
       let height = el.getBoundingClientRect().height
-
       new To(el, 'translateX', -this.currentIndex * width, 200, this.ease)
 
     }
