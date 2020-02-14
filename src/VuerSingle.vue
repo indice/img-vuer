@@ -57,6 +57,7 @@ export default {
       let img = new Image()
       let imgEl = this.$el.lastChild.firstChild
       img.onload = function() {
+        localStorage.setItem('expand', 'no');
         let h = this.height
         let w = this.width
         vm.imgEl = imgEl
