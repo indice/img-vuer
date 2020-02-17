@@ -6,6 +6,8 @@
       :style="{'background-color':backgroundColor}"
       v-finger:singleTap="handleTapClose"
     >
+      <a class="prev" @click="prev()">&#10094;</a>
+      <a class="next" @click="next()">&#10095;</a>   
       <div
         class="item-wrapper"
         v-transform
@@ -161,13 +163,21 @@ export default {
     next() {
       let el = document.querySelector('.item-wrapper')
       let width = el.getBoundingClientRect().width
-      this.currentIndex += 1
+      console.log(' #next ' + this.currentIndex + ' < ' + this.maxIndex)
+      if (this.currentIndex < this.maxIndex) {
+        this.$refs.img[this.currentIndex].reset()
+        this.currentIndex += 1
+      }
       new To(el, 'translateX', -this.currentIndex * width, 200, this.ease)
     },
     prev() {
       let el = document.querySelector('.item-wrapper')
       let width = el.getBoundingClientRect().width
-      this.currentIndex -= 1
+      console.log(' #prev ' + this.currentIndex + ' < ' + this.maxIndex)
+      if (this.currentIndex > 0 && this.currentIndex <= this.maxIndex) {
+        this.$refs.img[this.currentIndex].reset()
+        this.currentIndex -= 1
+      }
       new To(el, 'translateX', -this.currentIndex * width, 200, this.ease)
     },
     changeSize(){ // portrait-landscape Screen change item-wrapper
@@ -188,6 +198,21 @@ export default {
 </script>
 
 <style scoped>
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+.prev {
+  left: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.8);
+}
 .prevent-pass-through {
   position: fixed;
   height: 100%;
