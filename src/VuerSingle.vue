@@ -67,7 +67,7 @@ export default {
         imgEl.style.top = (window.innerHeight - h) / 2 + 'px'
         imgEl.parentNode.style.display = 'block'
         if (w < window.innerWidth && h < window.innerHeight) {
-          vm.isSmall = onToggle
+          vm.isSmall = this.onToggle
         } else if (window.innerWidth / window.innerHeight < w / h) {
           vm.initialScale = window.innerWidth / w
           imgEl.scaleX = imgEl.scaleY = vm.initialScale
@@ -208,7 +208,7 @@ export default {
         //imgEl.scaleX = imgEl.scaleY = this.initialScale;
 
        if (w < window.innerWidth && h < window.innerHeight) {
-          this.isSmall = onToggle;
+          this.isSmall = this.onToggle;
         } else if (window.innerWidth / window.innerHeight < w / h) {
           this.initialScale = window.innerWidth / w;
           imgEl.scaleX = imgEl.scaleY = this.initialScale;
@@ -225,7 +225,7 @@ export default {
         //_imgEl.scaleX = _imgEl.scaleY = this.initialScale;
         
         if (w < window.innerWidth && h < window.innerHeight) {
-          this.isSmall = onToggle;
+          this.isSmall = this.onToggle;
         } else if (window.innerWidth / window.innerHeight < w / h) {
           this.initialScale = window.innerWidth / w;
           _imgEl.scaleX = _imgEl.scaleY = this.initialScale;
